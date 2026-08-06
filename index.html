@@ -6,12 +6,12 @@
 <title>Pedro Jardim — Design & Product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FAF9F5;--ink:#191917;--muted:#6C6C63;--line:#E7E4DA;
     --accent:#2740E0;--accent-tint:#EDEFFD;
-    --serif:'Instrument Serif',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;
+    --serif:'Instrument Serif',Georgia,serif;--sans:'Poppins',system-ui,sans-serif;
     --edge:clamp(22px,6vw,100px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -40,7 +40,7 @@
     background:color-mix(in srgb,var(--paper) 82%,transparent);
     backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
   nav.scrolled{border-color:var(--line)}
-  nav .brand{font-family:var(--serif);font-size:1.35rem}
+  nav .brand{font-family:var(--sans);font-weight:600;font-size:1.3rem;letter-spacing:-.01em}
   nav .links{display:flex;gap:30px;align-items:center}
   nav .links a{font-size:.9rem;font-weight:500;color:var(--muted);transition:color .2s;cursor:pointer}
   nav .links a:hover{color:var(--ink)}
@@ -168,6 +168,7 @@
   .hero-hi .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
   .hero-headline{font-family:var(--serif);font-size:clamp(2.5rem,6.4vw,5rem);line-height:1.02;
     letter-spacing:-.02em;max-width:17ch;font-weight:400}
+  .hero-headline,.sec-top h2,.case .cinfo h3,.case-head h1,.cs .right h3,.contact .big,.next .nt,.about-text .lead{-webkit-text-stroke:0.4px currentColor}
   /* WRITING */
   .wlist{margin-top:10px}
   .witem{display:grid;grid-template-columns:118px 1fr auto;gap:clamp(16px,4vw,44px);
@@ -199,7 +200,7 @@
 </nav>
 
 <header class="hero">
-  <p class="hero-hi">Hi, I'm Pedro <span class="wave">👋</span></p>
+  <p class="hero-hi">Hi, I'm <em>Pedro</em> <span class="wave">👋</span></p>
   <h1 class="hero-headline">Designing products that solve complex business problems.</h1>
   <p class="hero-sub">Over the past <b>6 years</b> I've worked across Product Discovery, UX Research, Product Strategy and end-to-end delivery for <b>B2B, SaaS and AI</b> products.</p>
   <a class="hero-cta" onclick="scrollToId('work')">See selected work <span>↓</span></a>
@@ -281,7 +282,7 @@
 <section id="contact" class="contact">
   <span class="label">Let's talk</span>
   <div class="big reveal">Great products start<br>with good conversations.</div>
-  <a href="mailto:[ your email ]" class="mail reveal">[ your email ]</a>
+  <a href="mailto:pedrojardimhb@gmail.com" class="mail reveal">pedrojardimhb@gmail.com</a>
   <div class="social reveal">
     <a href="https://wa.me/21972063805">WhatsApp</a>
     <a href="https://www.linkedin.com/in/pedro-jardim-46b6a01b3/">LinkedIn</a>
