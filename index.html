@@ -52,6 +52,9 @@
   .shot{background-size:cover;background-position:top center;background-repeat:no-repeat;
     border:1px solid var(--line);background-color:#fff}
   .case-hero .img.shot,.gallery .img.shot{height:auto;aspect-ratio:16/9}
+  /* screenshots don't run edge to edge — keep them contained and centred */
+  .case-hero .img.shot{max-width:760px;margin:0 auto}
+  .gallery.narrow{max-width:900px;margin:0 auto}
   .jump-hero{background-image:url('img/jump-dashboard.jpg')}
   .jump-g1{background-image:url('img/jump-perfil.jpg')}
   .jump-g2{background-image:url('img/jump-login.jpg')}
@@ -555,7 +558,7 @@
       const metrics=s.metrics?`<div class="metrics">${s.metrics.map(m=>`<div><div class="big">${m.big}</div><div class="l">${m.l}</div></div>`).join('')}</div>`:'';
       const ps=s.ps.map(p=>`<p>${p}</p>`).join('');
       const block=`<div class="cs"><div class="left"><div class="num">${s.num}</div><div class="lab">${s.lab}</div></div><div class="right"><h3>${s.h}</h3>${metrics}${ps}</div></div>`;
-      const gal=(s.lab==='Execution')?`<div class="gallery"><div class="img ${c.gallery[0]}"></div><div class="img ${c.gallery[1]}"></div></div>`:'';
+      const gal=(s.lab==='Execution')?`<div class="gallery${c.gallery[0].includes('shot')?' narrow':''}"><div class="img ${c.gallery[0]}"></div><div class="img ${c.gallery[1]}"></div></div>`:'';
       return block+gal;
     }).join('');
     return `<div class="case-head">
