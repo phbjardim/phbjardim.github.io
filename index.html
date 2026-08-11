@@ -71,6 +71,13 @@
   .safer-g1{background-image:url('img/safer-mapa-ia.jpg')}
   .safer-g2{background-image:url('img/safer-localidades.jpg')}
   .case-hero .img.r17,.gallery .img.r17{aspect-ratio:1920/1128}
+  .sync-hero{background-image:url('img/sync-fluxo-atual.jpg')}
+  .sync-g1{background-image:url('img/sync-blueprint-atual.jpg')}
+  .sync-g2{background-image:url('img/sync-blueprint-futuro.jpg')}
+  .case-hero .img.r161,.gallery .img.r161{aspect-ratio:1500/933}
+  .case-hero .img.r074,.gallery .img.r074{aspect-ratio:1100/1478}
+  .case-hero .img.r098,.gallery .img.r098{aspect-ratio:1100/1125}
+  .gallery{align-items:start}
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;
@@ -286,8 +293,19 @@
     <span class="arrow">↗</span>
   </div>
 
-  <div class="case reveal" onclick="openCase('pbm')">
+  <div class="case reveal" onclick="openCase('sync')">
     <span class="idx">04</span>
+    <span class="cinfo">
+      <span class="label">Discovery · Service Design · Data · Internal Tools</span>
+      <h3>Upstream sync &amp; match</h3>
+      <p>An internal control platform for PBM discounts — one operator deciding which discount reaches which channel and which banner.</p>
+    </span>
+    <span class="thumb shot sync-hero"></span>
+    <span class="arrow">↗</span>
+  </div>
+
+  <div class="case reveal" onclick="openCase('pbm')">
+    <span class="idx">05</span>
     <span class="cinfo">
       <span class="label">Discovery · Systems Thinking · Compliance</span>
       <h3>Dynamic PBM registration</h3>
@@ -497,7 +515,7 @@
       summary:'A multi-tenant cyber-risk platform for industrial OT/CPS \u2014 designed so the executive who decides and the analyst who operates both work from the same screen.',
       role:'Product Designer', scope:'PRD → Design System → Prototype → Handoff',
       timeline:'Ongoing · V3', year:'2026', hero:'shot r17 safer-hero', gallery:['shot r17 safer-g1','shot r17 safer-g2'],
-      next:{key:'pbm', title:'Dynamic PBM registration'},
+      next:{key:'sync', title:'Upstream sync & match'},
       sections:[
         {num:'01',lab:'Challenge',h:'Security that has to become a decision',ps:[
           'OT and CPS environments can\u2019t just \u201cupdate and reboot\u201d \u2014 a mis-prioritized risk isn\u2019t a ticket, it\u2019s downtime, an environmental incident, a human-safety risk.',
@@ -525,6 +543,42 @@
         {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
           'I\u2019d validate the executive view with real decision-makers sooner \u2014 the 30-second read is easy to assume and hard to earn.',
           'And I\u2019d formalize the AI\u2019s rationale-and-confidence surfacing as its own pattern earlier in the system.']}
+      ]
+    },
+    sync:{
+      eyebrow:'Discovery · Service Design · Data · Internal Tools',
+      title:'Upstream sync & match',
+      summary:'An internal control platform for PBM discounts at RD \u2014 letting one operator decide which discount reaches which channel and which banner, in a flow where a weekly spreadsheet and a nightly data load never agreed.',
+      role:'Product Designer', scope:'Discovery → Service Design → Co-creation → Handoff',
+      timeline:'Quarterly roadmap', year:'2022', hero:'shot r161 sync-hero', gallery:['shot r074 sync-g1','shot r098 sync-g2'],
+      next:{key:'pbm', title:'Dynamic PBM registration'},
+      sections:[
+        {num:'01',lab:'Challenge',h:'Two sources of truth that never matched',ps:[
+          'PBM discounts reached RD\u2019s sales channels through two parallel paths that were never in sync. Four authorizers \u2014 E-pharma, Seven, Funcional and Zicard \u2014 pushed a data load every night, each at its own hour. Meanwhile labs sent discount-rule updates separately, in different formats, which the commercial team compiled into a spreadsheet updated only once a week.',
+          'For an authorization to go through, a product had to exist in both the load and the spreadsheet. When it didn\u2019t, the customer hit an error at the counter \u2014 hurting PBM penetration, revenue, and service time.']},
+        {num:'02',lab:'Constraints',h:'A business rule, not just a sync problem',ps:[
+          'This couldn\u2019t be solved by simply automating the merge. Which discount is valid in which channel (counter, site, app) and under which banner (Raia or Drogasil) depends on commercial agreements between RD and each pharma company \u2014 human decisions that had to stay human.',
+          'So the target was never full automation: it was giving an internal operator a place to see everything the authorizers sent and decide what actually goes live where.']},
+        {num:'03',lab:'Discovery',h:'Mapping the flow, then measuring it',ps:[
+          'I mapped the current service end to end as a blueprint \u2014 attendant actions, the counter interface, the databases, the authorizers, and the commercial team \u2014 with a dedicated lane for pains and another for metrics, so every problem sat next to the step that caused it.',
+          'Then I sized it. Divergence between spreadsheet and load averaged 42% of total SKUs. The \u201cproduct not couponable\u201d error alone accounted for 4,344 of 33,176 errors \u2014 13% of all divergence-related failures. Broken down by authorizer, divergence ranged from 33% (Funcional) to 54% (E-pharma). The problem stopped being anecdotal and became a number the tribe could prioritise.']},
+        {num:'04',lab:'Decisions',h:'A control surface before the channels',ps:[
+          'The decision was to insert a control interface inside the registration management system: everything the authorizers send lands there first, the commercial team treats it, and only then does it reach the sales channels.',
+          'I ran a multidisciplinary co-creation workshop to shape it \u2014 framing the problem as How Might We questions, mapping what each stage of the feature needed, then Crazy 8 sketching and voting. Putting the actual users in the room meant the structure came out of the operation rather than from me.']},
+        {num:'05',lab:'Trade-offs',h:'Keeping a human in the loop',ps:[
+          'Automating the whole match would have been faster to build and easier to sell. But commercial agreements aren\u2019t deterministic, and silently publishing a wrong discount is worse than publishing none \u2014 so I kept a human decision point and designed for review speed instead of removing the reviewer.',
+          'The scope also stayed upstream rather than redesigning the counter interface: fixing the source of divergence would clean up every downstream channel at once.']},
+        {num:'06',lab:'Execution',h:'From blueprint to specs',ps:[
+          'I delivered the current and ideal service blueprints, the quantitative analysis by authorizer and error type, the co-creation outputs, and a handoff presentation covering interface specs, search tag behaviour, scroll behaviour, and the lab-programme and complex-rule modals.',
+          'The initiative was sequenced into the tribe\u2019s quarterly roadmap alongside the other PBM workstreams, with confidence levels flagged per item.']},
+        {num:'07',lab:'Outcome',h:'A problem the tribe could act on',metrics:[{big:'42%',l:'SKU divergence found'},{big:'13%',l:'of errors from one cause'},{big:'4 → 1',l:'authorizers, one surface'}],ps:[
+          'The work turned a vague, chronic complaint into a measured, mapped problem with an agreed solution and a place on the roadmap. My contribution here was less about screens than about giving the organisation a shared, evidenced picture of a flow nobody owned end to end.']},
+        {num:'08',lab:'Lessons Learned',h:'Numbers move roadmaps',ps:[
+          'A blueprint shows where a process breaks; a number decides whether anyone funds the fix. Pairing the two \u2014 the pain lane next to the metric lane \u2014 was what got this prioritised.',
+          'And co-creation isn\u2019t a workshop ritual: bringing the commercial team into the design meant the control interface matched how they actually negotiate, not how I imagined they did.']},
+        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
+          'I\u2019d define the success metric and its instrumentation during discovery, not after \u2014 divergence rate was measurable, so it should have been the tracked KPI from day one.',
+          'And I\u2019d push the interface itself further. The research and handoff hold up; the final screens were the weakest part of the delivery, and I\u2019d protect more time for that craft.']}
       ]
     },
     pbm:{
