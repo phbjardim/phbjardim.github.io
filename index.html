@@ -48,6 +48,13 @@
   .g4{background:linear-gradient(135deg,#1B2340,#5A6B9E)}
   .g1b{background:linear-gradient(135deg,#2740E0,#8F9EFA)}
   .g1c{background:linear-gradient(135deg,#4F5CC2,#B3BCF5)}
+  /* real product screenshots */
+  .shot{background-size:cover;background-position:top center;background-repeat:no-repeat;
+    border:1px solid var(--line);background-color:#fff}
+  .case-hero .img.shot,.gallery .img.shot{height:auto;aspect-ratio:16/9}
+  .jump-hero{background-image:url('img/jump-dashboard.jpg')}
+  .jump-g1{background-image:url('img/jump-perfil.jpg')}
+  .jump-g2{background-image:url('img/jump-login.jpg')}
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;
@@ -237,7 +244,7 @@
       <h3>TI Safe Jump</h3>
       <p>Inheriting a fragmented open-source stack and turning it into one integrated product — concept to handoff in two months.</p>
     </span>
-    <span class="thumb g4"></span>
+    <span class="thumb shot jump-hero"></span>
     <span class="arrow">↗</span>
   </div>
 
@@ -403,7 +410,7 @@
       title:'TI Safe Jump',
       summary:'Inheriting a fragmented open-source stack and turning it into one integrated, internally-owned product — concept to developer handoff in two months.',
       role:'PM & Product Designer', scope:'Ownership → Strategy → IA → Prototype → Handoff',
-      timeline:'~2 months · 5 sprints', year:'2026', hero:'g4', gallery:['g4','g1c'],
+      timeline:'~2 months · 5 sprints', year:'2026', hero:'shot jump-hero', gallery:['shot jump-g1','shot jump-g2'],
       next:{key:'marketplace', title:'Marketplace seller onboarding'},
       sections:[
         {num:'01',lab:'Challenge',h:'A product that wasn\u2019t a product',ps:[
