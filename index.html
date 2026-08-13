@@ -93,7 +93,7 @@
   nav .links .cta:hover{background:var(--ink);color:var(--paper)}
   nav .back{font-size:.9rem;font-weight:500;color:var(--muted);cursor:pointer}
   nav .back:hover{color:var(--ink)}
-  @media(max-width:640px){nav .links a:not(.cta){display:none}}
+  @media(max-width:640px){nav .links a[data-scroll]{display:none}}
 
   /* HERO */
   header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
@@ -146,8 +146,7 @@
     align-items:start;margin-top:50px}
   .about-photo{aspect-ratio:4/5;border-radius:8px;background:var(--accent-tint);
     background-image:url('img/pedro.jpg');background-size:cover;background-position:center;
-    display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
-    color:var(--muted);font-size:.85rem;border:1px dashed #c3caf3}
+    border:1px solid var(--line)}
   .about-text .lead{font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.35rem);
     line-height:1.24;font-weight:400;letter-spacing:-.01em}
   .about-text .lead em{color:var(--accent);font-style:normal}
@@ -238,8 +237,8 @@
 <nav id="nav">
   <a class="brand" onclick="go('home')">Pedro Jardim</a>
   <div class="links">
-    <a onclick="scrollToId('work')">Work</a>
-    <a onclick="scrollToId('about')">About</a>
+    <a data-scroll onclick="scrollToId('work')">Work</a>
+    <a data-scroll onclick="scrollToId('about')">About</a>
     <a onclick="go('writing')">Writing</a>
     <a class="cta" onclick="scrollToId('contact')">Contact</a>
   </div>
@@ -341,8 +340,8 @@
   <div class="big reveal">Great products start<br>with good conversations.</div>
   <a href="mailto:pedrojardimhb@gmail.com" class="mail reveal">pedrojardimhb@gmail.com</a>
   <div class="social reveal">
-    <a href="https://wa.me/5521972063805">WhatsApp</a>
-    <a href="https://www.linkedin.com/in/pedro-jardim-46b6a01b3/">LinkedIn</a>
+    <a href="https://wa.me/5521972063805" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.linkedin.com/in/phbjardim/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </section>
 
@@ -389,7 +388,7 @@
   <span class="label">More on LinkedIn</span>
   <div class="big">Let's think<br>out loud.</div>
   <div class="social">
-    <a href="https://www.linkedin.com/in/pedro-jardim-46b6a01b3/" target="_blank" rel="noopener">Read on LinkedIn</a>
+    <a href="https://www.linkedin.com/in/phbjardim/" target="_blank" rel="noopener">Read on LinkedIn</a>
   </div>
 </section>
 
@@ -430,7 +429,7 @@
         {num:'02',lab:'Constraints',h:'Two months, one date',ps:[
           'Two months to rebuild a complete product, against a non-negotiable date tied to an event. And OT is unforgiving \u2014 you don\u2019t \u201cupdate and reboot\u201d a substation \u2014 so correctness, permissions, and auditability weren\u2019t nice-to-haves.',
           'That framing forced a product decision before any screen: define an MVP scoped to the first date, and push the lower-priority capabilities into a later roadmap.']},
-        {num:'03',lab:'Discovery',h:'Understanding the field',ps:[
+        {num:'03',lab:'Discovery',h:'Learning the domain before designing it',ps:[
           'I ran a competitive analysis of 8 players to map table stakes, gaps, and where Jump could differentiate \u2014 an OT-native vault and approval flow, hierarchical permissions, and an on-prem option.',
           'In parallel I interviewed stakeholders, gathered OT technical requirements, and documented the business rules the project had never written down.']},
         {num:'04',lab:'Decisions',h:'Language before pixels',ps:[
@@ -448,7 +447,7 @@
         {num:'08',lab:'Lessons Learned',h:'What held the deadline',ps:[
           'A short deadline isn\u2019t solved by working faster \u2014 it\u2019s solved by deciding, honestly, what doesn\u2019t make the first cut.',
           'Controlled vocabulary turned out to be design, not documentation: naming the domain precisely prevented whole classes of errors downstream. And an existing design system is leverage \u2014 it\u2019s what lets you say yes to one more state without the interface falling apart.']},
-        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
+        {num:'09',lab:'What I\u2019d do differently',h:'Protect the cut',ps:[
           'I\u2019d formalize the MVP cut with stakeholders even earlier, in writing, to protect scope from late additions.',
           'And I\u2019d build a lighter loop to validate flows with real OT operators sooner \u2014 the closer the feedback gets to the plant floor, the more confident the edge cases.']}
       ]
@@ -476,14 +475,18 @@
         {num:'05',lab:'Trade-offs',h:'Flexibility where it protects revenue',ps:[
           'A single branching flow is harder to design and validate than leaving two silos alone \u2014 but far cheaper to operate and evolve.',
           'Preserving negotiated terms meant added conditional logic rather than a clean one-size path; I chose flexibility where it protected revenue.']},
-        {num:'06',lab:'Execution',h:'Built for build',ps:[
-          'I delivered the unified flow, the identification branch, the hunter control dashboard, and the handoff documentation for legal \u2014 specced for build.']},
+        {num:'06',lab:'Execution',h:'One flow, two toolsets',ps:[
+          'The entry screen asks a single question \u2014 did you come on your own, or is a hunter advising you? Choosing the advised path requires the hunter\u2019s code, which binds the seller to that hunter from the first step and carries the negotiated terms through the rest of the flow.',
+          'Behind it, hunters got their own surface: their code always to hand, search by seller name or CNPJ, and every seller listed against an explicit status \u2014 documents pending, registration complete, approved with contract pending, rejected. Bulk actions let them move several sellers at once instead of chasing each one, and the same statuses gave legal a predictable queue to work from.']},
         {num:'07',lab:'Outcome',h:'Tied to the growth OKR',metrics:[{big:'3\u00d7',l:'seller goal (600\u21921,800)'},{big:'2 \u2192 1',l:'flows unified'},{big:'6 wks',l:'to ship'}],ps:[
-          'The unified flow was built to speed advised-seller onboarding, bring in more sellers, and finally capture solid recruitment data \u2014 the expected outcomes tied to the growth OKR.']},
+          'The unified flow was built to speed advised-seller onboarding, bring in more sellers, and finally capture solid recruitment data \u2014 the expected outcomes tied to the growth OKR.',
+          'The structural win was quieter: with one flow instead of two, every future change to seller entry had a single place to happen. What used to be a manual process running in parallel became a product the team could actually iterate on.']},
         {num:'08',lab:'Lessons Learned',h:'Design the branch',ps:[
-          'One entry point can serve very different users when you design the branch, not a second flow. A shared path plus role-specific tools kept flexibility without fragmenting the product.']},
-        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
-          'I\u2019d instrument the funnel from day one so the OKR could be tracked in-flow rather than reported after \u2014 and pressure-test the identification step with edge-case sellers earlier.']}
+          'One entry point can serve very different users when you design the branch, not a second flow. A shared path plus role-specific tools kept flexibility without fragmenting the product.',
+          'It also reframed how I read requests like this one. \u201cWe have two audiences\u201d is usually a statement about internal process, not about users \u2014 and the fix belongs at the point where the paths diverge, not in a parallel product.']},
+        {num:'09',lab:'What I\u2019d do differently',h:'Instrument the funnel first',ps:[
+          'I\u2019d instrument the funnel from day one so the OKR could be tracked in-flow rather than reported after the fact. We designed toward a number we couldn\u2019t watch move.',
+          'I\u2019d also pressure-test the identification step with edge-case sellers earlier \u2014 someone who was advised but lost the code, or who starts organic and gets picked up by a hunter mid-way. Those are the paths that quietly generate support tickets.']}
       ]
     },
     safer:{
@@ -513,11 +516,12 @@
           'I built and maintained the design system carrying the whole platform \u2014 around 50 component sets, six primitive color scales on a 60-30-10 method, a Step spacing scale, and heavy domain components: analytical tables, the risk drawer, charts, the AI message boxes.',
           'Every screen and state was validated HTML-first, then mirrored into Figma incrementally.']},
         {num:'07',lab:'Outcome',h:'Coherent from token to module',metrics:[{big:'5',l:'product modules'},{big:'~50',l:'component sets'},{big:'Multi-tenant',l:'isolation by tenant_id'}],ps:[
-          'Safer V3 is coherent from token to module: one system holding five dense technical domains, each with heavy business logic translated into an interface two very different profiles actually use.']},
+          'Safer V3 is coherent from token to module: one system holding five dense technical domains, each with heavy business logic translated into an interface two very different profiles actually use.',
+          'The measure that matters here isn\u2019t a launch number \u2014 it\u2019s that adding a module no longer means renegotiating the whole interface. The system absorbs new rules instead of buckling under them.']},
         {num:'08',lab:'Lessons Learned',h:'Clarity is a risk feature',ps:[
           'In OT security, clarity is a risk feature. The best calls were almost always to show more context, not less \u2014 letting the design system carry the density without weighing the screen down.',
           'A system like this isn\u2019t a button library; it\u2019s what lets you say yes to one more state, module, or rule.']},
-        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
+        {num:'09',lab:'What I\u2019d do differently',h:'Earn the 30-second read',ps:[
           'I\u2019d validate the executive view with real decision-makers sooner \u2014 the 30-second read is easy to assume and hard to earn.',
           'And I\u2019d formalize the AI\u2019s rationale-and-confidence surfacing as its own pattern earlier in the system.']}
       ]
@@ -553,7 +557,7 @@
         {num:'08',lab:'Lessons Learned',h:'Numbers move roadmaps',ps:[
           'A blueprint shows where a process breaks; a number decides whether anyone funds the fix. Pairing the two \u2014 the pain lane next to the metric lane \u2014 was what got this prioritised.',
           'And co-creation isn\u2019t a workshop ritual: bringing the commercial team into the design meant the control interface matched how they actually negotiate, not how I imagined they did.']},
-        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
+        {num:'09',lab:'What I\u2019d do differently',h:'Own the metric from day one',ps:[
           'I\u2019d define the success metric and its instrumentation during discovery, not after \u2014 divergence rate was measurable, so it should have been the tracked KPI from day one.',
           'And I\u2019d push the interface itself further. The research and handoff hold up; the final screens were the weakest part of the delivery, and I\u2019d protect more time for that craft.']}
       ]
@@ -568,27 +572,31 @@
       sections:[
         {num:'01',lab:'Challenge',h:'One fixed form, four authorizers',ps:[
           'To get a PBM discount at the pharmacy, a customer must register with the authorizer providing that benefit \u2014 and there were four authorizers, each requiring different data.',
-          'But the counter\u2019s Relationship Terminal always showed the same fixed form, whatever the medication or authorizer.']},
+          'But the counter\u2019s Relationship Terminal always showed the same fixed form, whatever the medication or authorizer. Attendants filled what they could, guessed at the rest, and found out it was wrong only when the discount failed \u2014 with a customer waiting at the till.']},
         {num:'02',lab:'Constraints',h:'No error state may block a valid discount',ps:[
           'Some authorizers lacked required data, which blocked the discount; others received data they never asked for, an LGPD risk.',
           'The fix had to work in-store, at the counter, with no error state that could block a valid discount \u2014 laddering to one OKR: +12% CRM penetration.']},
-        {num:'03',lab:'Discovery',h:'Mapping every requirement',ps:[
-          'I mapped every field each authorizer required across every registration path, and traced where the fixed form caused missing data, wasted input, delays, and price mismatches at checkout.']},
+        {num:'03',lab:'Discovery',h:'What the usability tests exposed',ps:[
+          'I mapped every field each authorizer required across every registration path, then ran usability sessions with the attendants who actually work the counter. The findings were specific and cheap to act on: in one prototype where the submit button sat visible the whole time, three of four testers never realised the form scrolled. Six of eight never clicked the help icon meant to explain the \u201cPBM card\u201d field \u2014 a field most of them didn\u2019t recognise in the first place.',
+          'Attendants also flagged fields that fight reality: a mandatory landline number few customers still have, and a doctor\u2019s licence number they often can\u2019t get when the customer has no prescription in hand. And they consistently wanted prescription data above personal data, because that\u2019s the part they have to read carefully. The interface wasn\u2019t just asking for the wrong things \u2014 it was asking in the wrong order.']},
         {num:'04',lab:'Decisions',h:'Let the API drive the form',ps:[
           'One form, driven by an API that returns which fields a given medication\u2019s discount actually needs. Required fields enable; everything else is disabled in the interface, so it can\u2019t be filled unnecessarily.',
           'The rule lives in the system, not in the operator\u2019s memory.']},
         {num:'05',lab:'Trade-offs',h:'Coupling for correctness',ps:[
           'A dynamic, API-driven form is more work to build and test than a static one, and it couples the interface to backend contracts.',
           'I accepted that coupling because it was the only way to be correct across four different back ends without four different forms.']},
-        {num:'06',lab:'Execution',h:'Adaptive form, specced',ps:[
-          'I designed the single adaptive form and its states, specced the API-driven field logic, and handed off flows and behaviors for build.']},
+        {num:'06',lab:'Execution',h:'Specced down to the spacing',ps:[
+          'The form opens as a modal over the terminal, naming the authorizer and the medication so the attendant knows which programme they\u2019re registering into. Prescription data comes first, then personal data, then patient data when the patient isn\u2019t the account holder, then the industry consent questions \u2014 the order the attendants asked for. Fields the authorizer didn\u2019t request render as disabled and labelled \u201cnot requested\u201d, so their absence reads as intentional rather than broken.',
+          'I handed it off with redlined specs \u2014 spacing steps, field widths and states documented across the modal\u2019s variants \u2014 alongside the API-driven field logic and the behaviour for each path.']},
         {num:'07',lab:'Outcome',h:'Fewer errors, more discounts',metrics:[{big:'+12%',l:'CRM penetration (OKR)'},{big:'4 \u2192 1',l:'authorizers, one form'},{big:'0',l:'blocking error states'}],ps:[
-          'The adaptive form was built to raise throughput, lift PBM penetration by cutting discount-release errors, improve conversion, and reduce improperly stored data for compliance.']},
+          'The adaptive form was built to raise throughput, lift PBM penetration by cutting discount-release errors, improve conversion, and reduce improperly stored data for compliance.',
+          'Just as importantly, it moved the rule out of the attendant\u2019s head. Knowing which authorizer wants which field stopped being tacit knowledge held by experienced staff and became something the system asserts on every registration.']},
         {num:'08',lab:'Lessons Learned',h:'Constraints as a feature',ps:[
           'Constraints can be an interface feature \u2014 disabling what isn\u2019t needed did as much for correctness and compliance as any new field.',
-          'Letting an API drive the form kept one surface adaptable across very different back ends.']},
-        {num:'09',lab:'What I\u2019d do differently',h:'Next time',ps:[
-          'I\u2019d add lightweight telemetry on what each authorizer actually requires over time, so the form\u2019s logic could be audited and simplified rather than trusted blindly.']}
+          'Letting an API drive the form kept one surface adaptable across very different back ends \u2014 and made a disabled field into an explanation rather than a dead end.']},
+        {num:'09',lab:'What I\u2019d do differently',h:'Audit the rules over time',ps:[
+          'I\u2019d add lightweight telemetry on what each authorizer actually requires over time, so the form\u2019s logic could be audited and simplified rather than trusted blindly. Rules that live in an API drift quietly.',
+          'And I\u2019d retest after launch. The usability sessions shaped the design well, but we never closed the loop to confirm the fixes landed with the attendants who use it every day.']}
       ]
     }
   };
