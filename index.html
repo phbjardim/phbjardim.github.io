@@ -208,6 +208,15 @@
   }
 
   /* hero headline (statement) */
+  /* language switch */
+  .lang{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);
+    border-radius:999px;padding:3px;margin-left:6px;background:transparent}
+  .lang button{border:0;background:transparent;font:inherit;font-size:.74rem;font-weight:600;
+    letter-spacing:.04em;color:var(--muted);padding:4px 9px;border-radius:999px;cursor:pointer;
+    transition:background .25s,color .25s}
+  .lang button.on{background:var(--ink);color:var(--paper)}
+  .lang button:hover:not(.on){color:var(--ink)}
+  @media(max-width:640px){.lang{margin-left:2px}.lang button{padding:4px 7px;font-size:.7rem}}
   .hero-hi{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--muted);
     margin-bottom:16px;letter-spacing:-.01em}
   .hero-hi .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
@@ -237,35 +246,36 @@
 <nav id="nav">
   <a class="brand" onclick="go('home')">Pedro Jardim</a>
   <div class="links">
-    <a data-scroll onclick="scrollToId('work')">Work</a>
-    <a data-scroll onclick="scrollToId('about')">About</a>
-    <a onclick="go('writing')">Writing</a>
-    <a class="cta" onclick="scrollToId('contact')">Contact</a>
+    <a data-scroll onclick="scrollToId('work')" data-i18n="navWork">Work</a>
+    <a data-scroll onclick="scrollToId('about')" data-i18n="navAbout">About</a>
+    <a onclick="go('writing')" data-i18n="navWriting">Writing</a>
+    <a class="cta" onclick="scrollToId('contact')" data-i18n="navContact">Contact</a>
+    <span class="lang"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></span>
   </div>
 </nav>
 
 <header class="hero">
-  <p class="hero-hi">Hi, I'm <em>Pedro</em> <span class="wave">👋</span></p>
-  <h1 class="hero-headline">Designing products that solve complex business problems.</h1>
-  <p class="hero-sub">Over the past <b>6 years</b> I've worked across Product Discovery, UX Research, Product Strategy and end-to-end delivery for <b>B2B, SaaS and AI</b> products.</p>
-  <a class="hero-cta" onclick="scrollToId('work')">See selected work <span>↓</span></a>
+  <p class="hero-hi" data-i18n-html="heroHi">Hi, I'm <em>Pedro</em> <span class="wave">👋</span></p>
+  <h1 class="hero-headline" data-i18n="heroHead">Designing products that solve complex business problems.</h1>
+  <p class="hero-sub" data-i18n-html="heroSub">Over the past <b>6 years</b> I've worked across Product Discovery, UX Research, Product Strategy and end-to-end delivery for <b>B2B, SaaS and AI</b> products.</p>
+  <a class="hero-cta" onclick="scrollToId('work')" data-i18n-html="heroCta">See selected work <span>↓</span></a>
   <div class="marquee" aria-hidden="true">
     <div class="track">
-      <span>Product Discovery · UX Research · Product Strategy · Information Architecture · B2B · SaaS · Prototyping · Delivery · </span>
-      <span>Product Discovery · UX Research · Product Strategy · Information Architecture · B2B · SaaS · Prototyping · Delivery · </span>
+      <span data-i18n="marquee">Product Discovery · UX Research · Product Strategy · Information Architecture · B2B · SaaS · Prototyping · Delivery · </span>
+      <span data-i18n="marquee">Product Discovery · UX Research · Product Strategy · Information Architecture · B2B · SaaS · Prototyping · Delivery · </span>
     </div>
   </div>
 </header>
 
 <section id="work">
-  <div class="sec-top reveal"><h2>Selected work</h2><span class="label">2020 — 2026</span></div>
+  <div class="sec-top reveal"><h2 data-i18n="workTitle">Selected work</h2><span class="label">2020 — 2026</span></div>
 
   <div class="case reveal" onclick="openCase('jump')">
     <span class="idx">01</span>
     <span class="cinfo">
-      <span class="label">Ownership · Product Strategy · B2B · OT Security</span>
+      <span class="label" data-i18n="c1lab">Ownership · Product Strategy · B2B · OT Security</span>
       <h3>TI Safe Jump</h3>
-      <p>Inheriting a fragmented open-source stack and turning it into one integrated product — concept to handoff in two months.</p>
+      <p data-i18n="c1desc">Inheriting a fragmented open-source stack and turning it into one integrated product — concept to handoff in two months.</p>
     </span>
     <span class="thumb shot jump-hero"></span>
     <span class="arrow">↗</span>
@@ -274,8 +284,8 @@
   <div class="case reveal" onclick="openCase('marketplace')">
     <span class="idx">02</span>
     <span class="cinfo">
-      <span class="label">Discovery · UX Research · Product Strategy</span>
-      <h3>Marketplace seller onboarding</h3>
+      <span class="label" data-i18n="c2lab">Discovery · UX Research · Product Strategy</span>
+      <h3 data-i18n="c2title">Marketplace seller onboarding</h3>
       <p>Unifying two separate seller-entry flows at RD's marketplace into one — without losing the terms advised sellers relied on.</p>
     </span>
     <span class="thumb shot mkt-hero"></span>
@@ -285,7 +295,7 @@
   <div class="case reveal" onclick="openCase('safer')">
     <span class="idx">03</span>
     <span class="cinfo">
-      <span class="label">Product Strategy · Design Systems · AI-assisted · B2B</span>
+      <span class="label" data-i18n="c3lab">Product Strategy · Design Systems · AI-assisted · B2B</span>
       <h3>Safer V3</h3>
       <p>A multi-tenant cyber-risk platform for industrial OT/CPS — one interface for the executive who decides and the analyst who operates.</p>
     </span>
@@ -296,7 +306,7 @@
   <div class="case reveal" onclick="openCase('sync')">
     <span class="idx">04</span>
     <span class="cinfo">
-      <span class="label">Discovery · Service Design · Data · Internal Tools</span>
+      <span class="label" data-i18n="c4lab">Discovery · Service Design · Data · Internal Tools</span>
       <h3>Upstream sync &amp; match</h3>
       <p>An internal control platform for PBM discounts — one operator deciding which discount reaches which channel and which banner.</p>
     </span>
@@ -307,8 +317,8 @@
   <div class="case reveal" onclick="openCase('pbm')">
     <span class="idx">05</span>
     <span class="cinfo">
-      <span class="label">Discovery · Systems Thinking · Compliance</span>
-      <h3>Dynamic PBM registration</h3>
+      <span class="label" data-i18n="c5lab">Discovery · Systems Thinking · Compliance</span>
+      <h3 data-i18n="c5title">Dynamic PBM registration</h3>
       <p>One pharmacy-counter form that adapts its fields per authorizer via API — unblocking discounts, staying compliant.</p>
     </span>
     <span class="thumb shot pbm-hero"></span>
@@ -317,27 +327,27 @@
 </section>
 
 <section id="about">
-  <div class="sec-top reveal"><h2>About</h2><span class="label">Rio de Janeiro</span></div>
+  <div class="sec-top reveal"><h2 data-i18n="aboutTitle">About</h2><span class="label">Rio de Janeiro</span></div>
   <div class="about-grid">
     <div class="about-photo reveal" role="img" aria-label="Portrait of Pedro Jardim"></div>
     <div class="about-text reveal">
-      <p class="lead">The more products I worked on, the less I believed my job was <em>designing interfaces</em>.</p>
+      <p class="lead" data-i18n-html="aboutLead">The more products I worked on, the less I believed my job was <em>designing interfaces</em>.</p>
       <div class="body">
-        <p>Today I spend most of my time understanding problems, aligning stakeholders, and helping teams make better product decisions. The interface is where that work becomes visible — not where it starts.</p>
-        <p>I work across discovery, strategy, and end-to-end delivery for complex B2B, SaaS, and AI products. I'm most useful where a product is fragmented or sidelined and needs someone to take ownership and give it a direction.</p>
+        <p data-i18n="aboutP1">Today I spend most of my time understanding problems, aligning stakeholders, and helping teams make better product decisions. The interface is where that work becomes visible — not where it starts.</p>
+        <p data-i18n="aboutP2">I work across discovery, strategy, and end-to-end delivery for complex B2B, SaaS, and AI products. I'm most useful where a product is fragmented or sidelined and needs someone to take ownership and give it a direction.</p>
       </div>
       <div class="facts">
-        <div class="f"><div class="n">6</div><div class="l">years in product</div></div>
-        <div class="f"><div class="n">4</div><div class="l">flagship cases</div></div>
-        <div class="f"><div class="n">B2B</div><div class="l">SaaS · AI · OT</div></div>
+        <div class="f"><div class="n">6</div><div class="l" data-i18n="f1">years in product</div></div>
+        <div class="f"><div class="n">4</div><div class="l" data-i18n="f2">flagship cases</div></div>
+        <div class="f"><div class="n">B2B</div><div class="l" data-i18n="f3">SaaS · AI · OT</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
-  <span class="label">Let's talk</span>
-  <div class="big reveal">Great products start<br>with good conversations.</div>
+  <span class="label" data-i18n="contactLabel">Let's talk</span>
+  <div class="big reveal" data-i18n-html="contactBig">Great products start<br>with good conversations.</div>
   <a href="mailto:pedrojardimhb@gmail.com" class="mail reveal">pedrojardimhb@gmail.com</a>
   <div class="social reveal">
     <a href="https://wa.me/5521972063805" target="_blank" rel="noopener">WhatsApp</a>
@@ -355,7 +365,8 @@
 <div class="page" id="case">
 <nav>
   <a class="brand" onclick="go('home')">Pedro Jardim</a>
-  <span class="back" onclick="go('home')">← Back to work</span>
+  <span class="back" onclick="go('home')" data-i18n="back">← Back to work</span>
+  <span class="lang"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></span>
 </nav>
 
 <div id="caseBody"></div>
@@ -365,19 +376,20 @@
 <div class="page" id="writing">
 <nav>
   <a class="brand" onclick="go('home')">Pedro Jardim</a>
-  <span class="back" onclick="go('home')">← Back to work</span>
+  <span class="back" onclick="go('home')" data-i18n="back">← Back to work</span>
+  <span class="lang"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></span>
 </nav>
 
 <section>
-  <div class="sec-top"><h2>Writing</h2><span class="label">Notes on product</span></div>
-  <p class="writing-intro">Short pieces on how I think about product decisions — scope, trade-offs, and the work that happens before the interface. Most start as posts on LinkedIn.</p>
+  <div class="sec-top"><h2 data-i18n="writingTitle">Writing</h2><span class="label" data-i18n="writingLabel">Notes on product</span></div>
+  <p class="writing-intro" data-i18n="writingIntro">Short pieces on how I think about product decisions — scope, trade-offs, and the work that happens before the interface. Most start as posts on LinkedIn.</p>
 
   <div class="wlist">
     <a class="witem" href="https://www.linkedin.com/posts/phbjardim_1080-1350-ugcPost-7485842376553422848-vS05/" target="_blank" rel="noopener">
-      <span class="wdate">Jul 2026</span>
+      <span class="wdate" data-i18n="w1date">Jul 2026</span>
       <span>
-        <h3>Two months to rebuild a product</h3>
-        <p>Inheriting a stitched-together open-source stack against a non-negotiable event deadline — and why "how do we build everything in time?" was the wrong question.</p>
+        <h3 data-i18n="w1title">Two months to rebuild a product</h3>
+        <p data-i18n="w1desc">Inheriting a stitched-together open-source stack against a non-negotiable event deadline — and why "how do we build everything in time?" was the wrong question.</p>
       </span>
       <span class="arrow">↗</span>
     </a>
@@ -385,20 +397,109 @@
 </section>
 
 <section class="contact">
-  <span class="label">More on LinkedIn</span>
-  <div class="big">Let's think<br>out loud.</div>
+  <span class="label" data-i18n="moreLi">More on LinkedIn</span>
+  <div class="big" data-i18n-html="thinkBig">Let's think<br>out loud.</div>
   <div class="social">
-    <a href="https://www.linkedin.com/in/phbjardim/" target="_blank" rel="noopener">Read on LinkedIn</a>
+    <a href="https://www.linkedin.com/in/phbjardim/" target="_blank" rel="noopener" data-i18n="readLi">Read on LinkedIn</a>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Pedro Jardim</span>
-  <span>Design &amp; Product · Rio de Janeiro</span>
+  <span data-i18n="footRole">Design &amp; Product · Rio de Janeiro</span>
 </footer>
 </div>
 
 <script>
+
+  /* ---------- i18n ---------- */
+  const T = {
+    en:{
+      navWork:'Work', navAbout:'About', navWriting:'Writing', navContact:'Contact',
+      back:'\u2190 Back to work',
+      heroHi:"Hi, I'm <em>Pedro</em> <span class=\"wave\">\ud83d\udc4b</span>",
+      heroHead:'Designing products that solve complex business problems.',
+      heroSub:"Over the past <b>6 years</b> I've worked across Product Discovery, UX Research, Product Strategy and end-to-end delivery for <b>B2B, SaaS and AI</b> products.",
+      heroCta:'See selected work <span>\u2193</span>',
+      marquee:'Product Discovery \u00b7 UX Research \u00b7 Product Strategy \u00b7 Information Architecture \u00b7 B2B \u00b7 SaaS \u00b7 Prototyping \u00b7 Delivery \u00b7 ',
+      workTitle:'Selected work',
+      c1lab:'Ownership \u00b7 Product Strategy \u00b7 B2B \u00b7 OT Security',
+      c1desc:'Inheriting a fragmented open-source stack and turning it into one integrated product \u2014 concept to handoff in two months.',
+      c2lab:'Discovery \u00b7 UX Research \u00b7 Product Strategy', c2title:'Marketplace seller onboarding',
+      c2desc:"Unifying two separate seller-entry flows at RD's marketplace into one \u2014 without losing the terms advised sellers relied on.",
+      c3lab:'Product Strategy \u00b7 Design Systems \u00b7 AI-assisted \u00b7 B2B',
+      c3desc:'A multi-tenant cyber-risk platform for industrial OT/CPS \u2014 one interface for the executive who decides and the analyst who operates.',
+      c4lab:'Discovery \u00b7 Service Design \u00b7 Data \u00b7 Internal Tools',
+      c4desc:'An internal control platform for PBM discounts \u2014 one operator deciding which discount reaches which channel and which banner.',
+      c5lab:'Discovery \u00b7 Systems Thinking \u00b7 Compliance', c5title:'Dynamic PBM registration',
+      c5desc:'One pharmacy-counter form that adapts its fields per authorizer via API \u2014 unblocking discounts, staying compliant.',
+      aboutTitle:'About',
+      aboutLead:'The more products I worked on, the less I believed my job was <em>designing interfaces</em>.',
+      aboutP1:'Today I spend most of my time understanding problems, aligning stakeholders, and helping teams make better product decisions. The interface is where that work becomes visible \u2014 not where it starts.',
+      aboutP2:"I work across discovery, strategy, and end-to-end delivery for complex B2B, SaaS, and AI products. I'm most useful where a product is fragmented or sidelined and needs someone to take ownership and give it a direction.",
+      f1:'years in product', f2:'flagship cases', f3:'SaaS \u00b7 AI \u00b7 OT',
+      contactLabel:"Let's talk", contactBig:'Great products start<br>with good conversations.',
+      writingTitle:'Writing', writingLabel:'Notes on product',
+      writingIntro:'Short pieces on how I think about product decisions \u2014 scope, trade-offs, and the work that happens before the interface. Most start as posts on LinkedIn.',
+      w1date:'Jul 2026', w1title:'Two months to rebuild a product',
+      w1desc:'Inheriting a stitched-together open-source stack against a non-negotiable event deadline \u2014 and why "how do we build everything in time?" was the wrong question.',
+      moreLi:'More on LinkedIn', thinkBig:'Let\u2019s think<br>out loud.', readLi:'Read on LinkedIn',
+      footRole:'Design &amp; Product \u00b7 Rio de Janeiro',
+      nextLabel:'Next project', roleK:'Role', scopeK:'Scope', timeK:'Timeline', yearK:'Year'
+    },
+    pt:{
+      navWork:'Trabalhos', navAbout:'Sobre', navWriting:'Textos', navContact:'Contato',
+      back:'\u2190 Voltar aos trabalhos',
+      heroHi:'Oi, eu sou o <em>Pedro</em> <span class="wave">\ud83d\udc4b</span>',
+      heroHead:'Desenho produtos que resolvem problemas complexos de neg\u00f3cio.',
+      heroSub:'Nos \u00faltimos <b>6 anos</b> atuei em Product Discovery, UX Research, estrat\u00e9gia de produto e entrega ponta a ponta em produtos <b>B2B, SaaS e de IA</b>.',
+      heroCta:'Ver trabalhos selecionados <span>\u2193</span>',
+      marquee:'Product Discovery \u00b7 UX Research \u00b7 Estrat\u00e9gia de Produto \u00b7 Arquitetura da Informa\u00e7\u00e3o \u00b7 B2B \u00b7 SaaS \u00b7 Prototipa\u00e7\u00e3o \u00b7 Entrega \u00b7 ',
+      workTitle:'Trabalhos selecionados',
+      c1lab:'Ownership \u00b7 Estrat\u00e9gia de Produto \u00b7 B2B \u00b7 Seguran\u00e7a OT',
+      c1desc:'Assumi um conjunto fragmentado de ferramentas open source e transformei em um produto \u00fanico \u2014 do conceito ao handoff em dois meses.',
+      c2lab:'Discovery \u00b7 UX Research \u00b7 Estrat\u00e9gia de Produto', c2title:'Onboarding de sellers do marketplace',
+      c2desc:'Unifiquei dois fluxos separados de entrada de sellers no marketplace da RD \u2014 sem perder as condi\u00e7\u00f5es negociadas dos sellers assessorados.',
+      c3lab:'Estrat\u00e9gia de Produto \u00b7 Design Systems \u00b7 IA \u00b7 B2B',
+      c3desc:'Plataforma multi-tenant de risco cibern\u00e9tico para ambientes industriais OT/CPS \u2014 uma interface para o executivo que decide e o analista que opera.',
+      c4lab:'Discovery \u00b7 Service Design \u00b7 Dados \u00b7 Ferramentas Internas',
+      c4desc:'Plataforma interna de controle de descontos PBM \u2014 um operador decidindo qual desconto chega a cada canal e cada bandeira.',
+      c5lab:'Discovery \u00b7 Pensamento Sist\u00eamico \u00b7 Compliance', c5title:'Cadastro din\u00e2mico de PBM',
+      c5desc:'Um formul\u00e1rio de balc\u00e3o que adapta os campos por autorizadora via API \u2014 destravando descontos e mantendo a conformidade.',
+      aboutTitle:'Sobre',
+      aboutLead:'Quanto mais produtos eu fiz, menos acreditei que meu trabalho fosse <em>desenhar interfaces</em>.',
+      aboutP1:'Hoje passo a maior parte do tempo entendendo problemas, alinhando stakeholders e ajudando times a tomar decis\u00f5es melhores de produto. A interface \u00e9 onde esse trabalho fica vis\u00edvel \u2014 n\u00e3o onde ele come\u00e7a.',
+      aboutP2:'Atuo em discovery, estrat\u00e9gia e entrega ponta a ponta em produtos B2B, SaaS e de IA. Sou mais \u00fatil onde o produto est\u00e1 fragmentado ou sem dono e precisa de algu\u00e9m que assuma e d\u00ea uma dire\u00e7\u00e3o.',
+      f1:'anos em produto', f2:'cases principais', f3:'SaaS \u00b7 IA \u00b7 OT',
+      contactLabel:'Vamos conversar', contactBig:'Bons produtos come\u00e7am<br>com boas conversas.',
+      writingTitle:'Textos', writingLabel:'Notas sobre produto',
+      writingIntro:'Textos curtos sobre como penso decis\u00f5es de produto \u2014 escopo, trade-offs e o trabalho que acontece antes da interface. A maioria come\u00e7a como post no LinkedIn.',
+      w1date:'Jul 2026', w1title:'Dois meses para refazer um produto',
+      w1desc:'Herdar um amontoado de ferramentas open source com uma data inegoci\u00e1vel \u2014 e por que "como constru\u00edmos tudo a tempo?" era a pergunta errada.',
+      moreLi:'Mais no LinkedIn', thinkBig:'Vamos pensar<br>em voz alta.', readLi:'Ler no LinkedIn',
+      footRole:'Design &amp; Produto \u00b7 Rio de Janeiro',
+      nextLabel:'Pr\u00f3ximo projeto', roleK:'Fun\u00e7\u00e3o', scopeK:'Escopo', timeK:'Per\u00edodo', yearK:'Ano'
+    }
+  };
+  let LANG='en';
+  function applyLang(l){
+    LANG=l; const d=T[l];
+    document.documentElement.lang = (l==='pt'?'pt-BR':'en');
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.getAttribute('data-i18n'); if(d[k]!=null) el.innerHTML=d[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const k=el.getAttribute('data-i18n-html'); if(d[k]!=null) el.innerHTML=d[k];
+    });
+    document.querySelectorAll('.lang button').forEach(b=>
+      b.classList.toggle('on', b.dataset.lang===l));
+    const cb=document.getElementById('caseBody');
+    if(cb && cb.dataset.key) openCase(cb.dataset.key, true);
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+
   function go(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -412,6 +513,12 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
     e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  (function initLang(){
+    let saved='en';
+    try{ saved = localStorage.getItem('lang') || 'en'; }catch(e){}
+    applyLang(saved==='pt'?'pt':'en');
+  })();
 
   /* ---------- CASES (data-driven) ---------- */
   const CASES={
@@ -601,12 +708,199 @@
     }
   };
 
+  const CASES_PT={
+    jump:{
+      eyebrow:'Produto · PM · Segurança OT',
+      title:'TI Safe Jump',
+      summary:'Assumi o New Jump — uma plataforma de acesso remoto para ambientes OT que estava abandonada e fragmentada — e levei do conceito ao handoff em dois meses: vocabulário controlado, protótipo HTML-first e um design system documentado.',
+      role:'PM & Product Designer', scope:'Ownership → Estratégia → AI → Protótipo → Handoff',
+      timeline:'~2 meses · 5 sprints', year:'2026', hero:'shot jump-hero', gallery:['shot jump-g1','shot jump-g2'],
+      next:{key:'marketplace', title:'Onboarding de sellers do marketplace'},
+      sections:[
+        {num:'01',lab:'Desafio',h:'Um produto que não era um produto',ps:[
+          'O New Jump é uma plataforma B2B de acesso remoto privilegiado (PAM) para ambientes de tecnologia operacional na TI Safe. Herdei o projeto praticamente abandonado — e o que existia não era um produto, mas um conjunto de ferramentas open source costuradas ao longo do tempo, com débito técnico real.',
+          'O mandato era consolidar aquilo em um produto único, construído internamente, com um modelo coerente, regras consistentes e uma experiência em que o cliente pudesse confiar.']},
+        {num:'02',lab:'Restrições',h:'Dois meses, uma data',ps:[
+          'Dois meses para refazer um produto completo, contra uma data inegociável amarrada a um evento. E OT não perdoa — não se "atualiza e reinicia" uma subestação —, então correção, permissões e auditabilidade não eram opcionais.',
+          'Isso forçou uma decisão de produto antes de qualquer tela: definir um MVP recortado para a primeira data e empurrar as funcionalidades menos prioritárias para o roadmap.']},
+        {num:'03',lab:'Discovery',h:'Aprender o domínio antes de desenhá-lo',ps:[
+          'Conduzi análise competitiva de 8 plataformas para mapear paridade, lacunas e onde o Jump poderia se diferenciar — vault e fluxo de aprovação nativos de OT, permissão hierárquica e opção on-premise.',
+          'Em paralelo, entrevistei stakeholders, levantei requisitos técnicos de OT e documentei as regras de negócio que o projeto nunca tinha registrado.']},
+        {num:'04',lab:'Decisões',h:'Linguagem antes de pixel',ps:[
+          'A decisão fundamental foi de linguagem. Em OT, ambiguidade custa caro, então estabeleci um vocabulário controlado em um glossário de 16 páginas — "recurso remoto", e não "ativo"; "sessão de autenticação" versus "sessão remota"; "grupo", e não "role".',
+          'A partir daí, uma arquitetura da informação — ontologia, taxonomia e coreografia — deu espinha dorsal ao produto. E escolhi prototipar HTML-first, tratando o protótipo funcional como fonte de verdade viva em vez de frames estáticos.']},
+        {num:'05',lab:'Trade-offs',h:'Núcleo correto acima de superfície ampla',ps:[
+          'Recortar o MVP para o evento significou cortar conscientemente funcionalidades boas e sequenciá-las depois da data. Otimizei por um núcleo correto e entregável em vez de uma superfície ampla e rasa.',
+          'HTML-first significou menos polimento visual no início, mas validação muito mais rápida em navegador real e bem menos retrabalho — a troca certa para aquele prazo.']},
+        {num:'06',lab:'Execução',h:'Do protótipo ao handoff',ps:[
+          'Entreguei mais de 19 telas funcionais em HTML, CSS e JavaScript puro, com PT/EN/ES nativo e todos os estados e interações previstos.',
+          'Aproveitei um design system existente — tokens de cor, tipografia, espaçamento e elevação, além de componentes reutilizáveis espelhados no Figma — e foi isso que tornou o prazo de dois meses realista. O handoff foi estruturado em três fases fixas: especificações, depois fluxos e telas, depois comportamentos (estados, validações, permissões, casos de exceção).']},
+        {num:'07',lab:'Resultado',h:'À frente do roadmap',metrics:[{big:'19+',l:'telas navegáveis'},{big:'8',l:'concorrentes analisados'},{big:'3',l:'idiomas (PT/EN/ES)'}],ps:[
+          'O design ficou pronto à frente de um roadmap de 9 semanas e 5 sprints, para um time de 4 desenvolvedores, com o MVP preparado para sustentar a primeira data. O produto saiu de um amontoado de ferramentas para uma base documentada e construível.',
+          'O New Jump está em desenvolvimento, com deploy previsto para agosto de 2026.']},
+        {num:'08',lab:'Aprendizados',h:'O que segurou o prazo',ps:[
+          'Prazo curto não se resolve trabalhando mais rápido — se resolve decidindo, com honestidade, o que não entra no primeiro corte.',
+          'Vocabulário controlado acabou sendo design, e não documentação: nomear o domínio com precisão evitou categorias inteiras de erro lá na frente. E um design system existente é alavanca — é o que permite dizer sim a mais um estado sem a interface desmoronar.']},
+        {num:'09',lab:'O que eu faria diferente',h:'Proteger o corte',ps:[
+          'Formalizaria o corte do MVP com os stakeholders bem mais cedo, por escrito, para blindar o escopo de adições tardias.',
+          'E montaria um loop mais leve para validar fluxos com operadores de OT reais antes — quanto mais perto o feedback chega do chão de fábrica, mais confiáveis ficam os casos de exceção.']}
+      ]
+    },
+    marketplace:{
+      eyebrow:'Discovery · UX Research · Estratégia de Produto',
+      title:'Onboarding de sellers do marketplace',
+      summary:'Unifiquei dois fluxos separados de entrada de sellers no marketplace da RD — sem perder as condições negociadas de que os sellers assessorados dependiam.',
+      role:'Product Designer', scope:'Discovery → Estratégia → Design → Handoff',
+      timeline:'6 semanas · Jan–Mar', year:'2025', hero:'shot r43 mkt-hero', gallery:['shot r43 mkt-g1','shot r43 mkt-g2'],
+      next:{key:'safer', title:'Safer V3'},
+      sections:[
+        {num:'01',lab:'Desafio',h:'Dois fluxos, um marketplace',ps:[
+          'No marketplace da RD, sellers chegavam por dois caminhos: os orgânicos, que se cadastravam sozinhos, e os assessorados, convidados por times de hunters. Os dois grupos passavam por fluxos completamente diferentes — um formulário padrão de autoatendimento e um processo manual e negociado.',
+          'Essa divisão deixava dados fracos sobre os sellers assessorados e um onboarding que podia levar meses.']},
+        {num:'02',lab:'Restrições',h:'Condições que não dava para achatar',ps:[
+          'Os contratos dos sellers assessorados carregavam termos negociados que não cabiam no fluxo padrão. Qualquer caminho unificado precisava preservar essas condições e manter hunters — e o jurídico — capazes de trabalhar.',
+          'A iniciativa respondia a um OKR de crescimento: triplicar o número de sellers, de 600 para 1.800.']},
+        {num:'03',lab:'Discovery',h:'Não eram dois públicos — eram dois fluxos',ps:[
+          'Mapeei os dois fluxos ponta a ponta, conversei com hunters sobre onde as negociações travavam e identifiquei onde o processo manual perdia dado e tempo.',
+          'O insight central: o problema não eram dois públicos, e sim dois fluxos — os públicos podiam compartilhar o mesmo caminho se a entrada ramificasse corretamente.']},
+        {num:'04',lab:'Decisões',h:'Um fluxo que ramifica',ps:[
+          'Desenhar um fluxo único com uma etapa de identificação no início, que separa seller orgânico de assessorado, em vez de manter dois.',
+          'Dar aos hunters um dashboard de controle para acompanhar onde cada seller está no fluxo de inclusão e manter todo documento do processo pronto para o jurídico.']},
+        {num:'05',lab:'Trade-offs',h:'Flexibilidade onde protege receita',ps:[
+          'Um fluxo único com ramificação é mais difícil de desenhar e validar do que deixar dois silos como estão — mas muito mais barato de operar e evoluir.',
+          'Preservar os termos negociados significou adicionar lógica condicional em vez de um caminho único e limpo; escolhi flexibilidade onde ela protegia receita.']},
+        {num:'06',lab:'Execução',h:'Um fluxo, dois conjuntos de ferramenta',ps:[
+          'A tela de entrada faz uma pergunta só — você chegou sozinho ou está sendo assessorado por um hunter? Escolher o caminho assessorado exige o código do hunter, que amarra o seller àquele hunter desde o primeiro passo e carrega as condições negociadas pelo resto do fluxo.',
+          'Por trás, os hunters ganharam a própria superfície: o código sempre à mão, busca por nome ou CNPJ, e cada seller listado com um status explícito — documentos pendentes, cadastro concluído, aprovado com contrato pendente, reprovado. Ações em massa permitiram mover vários sellers de uma vez, e os mesmos status deram ao jurídico uma fila previsível.']},
+        {num:'07',lab:'Resultado',h:'Atrelado ao OKR de crescimento',metrics:[{big:'3×',l:'meta de sellers (600→1.800)'},{big:'2 → 1',l:'fluxos unificados'},{big:'6 sem',l:'até a entrega'}],ps:[
+          'O fluxo unificado foi construído para acelerar o onboarding de sellers assessorados, trazer mais sellers e finalmente capturar dados sólidos de recrutamento — os resultados esperados atrelados ao OKR de crescimento.',
+          'O ganho estrutural foi mais silencioso: com um fluxo em vez de dois, toda mudança futura na entrada de sellers passou a ter um único lugar para acontecer. O que era processo manual rodando em paralelo virou produto que o time consegue evoluir.']},
+        {num:'08',lab:'Aprendizados',h:'Desenhe a ramificação',ps:[
+          'Um único ponto de entrada atende usuários muito diferentes quando você desenha a ramificação, e não um segundo fluxo. Caminho compartilhado somado a ferramentas específicas por papel manteve a flexibilidade sem fragmentar o produto.',
+          'Isso também mudou como eu leio pedidos assim. "Temos dois públicos" costuma ser uma afirmação sobre processo interno, não sobre usuários — e a correção pertence ao ponto onde os caminhos divergem, não a um produto paralelo.']},
+        {num:'09',lab:'O que eu faria diferente',h:'Instrumentar o funil primeiro',ps:[
+          'Instrumentaria o funil desde o primeiro dia, para que o OKR pudesse ser acompanhado dentro do fluxo em vez de reportado depois. A gente desenhou mirando um número que não conseguia ver se mexia.',
+          'Também testaria a etapa de identificação com sellers de caso extremo mais cedo — alguém que foi assessorado mas perdeu o código, ou que começa orgânico e é captado por um hunter no meio do caminho. São esses os caminhos que geram ticket de suporte em silêncio.']}
+      ]
+    },
+    safer:{
+      eyebrow:'Estratégia de Produto · Design System · Segurança OT',
+      title:'Safer V3',
+      summary:'Plataforma multi-tenant de gestão de risco cibernético para ambientes industriais (OT/CPS) — desenhada para servir, na mesma tela, quem decide e quem opera.',
+      role:'Product Designer', scope:'PRD → Design System → Protótipo → Handoff',
+      timeline:'Em andamento · V3', year:'2026', hero:'shot r17 safer-hero', gallery:['shot r17 safer-g1','shot r17 safer-g2'],
+      next:{key:'sync', title:'Upstream sync & match'},
+      sections:[
+        {num:'01',lab:'Desafio',h:'Segurança que precisa virar decisão',ps:[
+          'Ambientes de OT e CPS — plantas industriais, subestações, mineração, saneamento — não podem simplesmente "atualizar e reiniciar". Um risco mal priorizado ali não é um ticket: é parada de produção, incidente ambiental, risco humano.',
+          'O Safer é o núcleo decisório desse cenário: consolida exposições, ameaças, controles e contexto operacional em riscos priorizados. O desafio nunca foi listar CVEs — era traduzir um domínio técnico denso em algo que um executivo leia em 30 segundos e um analista opere por horas. Aqui o risco é derivado, não cadastrado: emerge da correlação entre exposição, ameaça, controle e criticidade do processo.']},
+        {num:'02',lab:'Restrições',h:'Usuários opostos, uma superfície',ps:[
+          'Dois perfis com necessidades opostas na mesma interface. Multi-tenancy real, com isolamento por tenant_id. Rastreabilidade auditável em cada mudança de estado.',
+          'E uma camada de IA assistiva que podia sugerir e explicar, mas nunca decidir sozinha. Cada restrição precisou virar uma decisão concreta de interface.']},
+        {num:'03',lab:'Discovery',h:'Risco é derivado, não cadastrado',ps:[
+          'Partindo das regras de negócio de cinco domínios — Riscos, Obrigações, Redes, Ativos e Processos —, modelei entidades, estados, fórmulas de score e critérios de aceite.',
+          'O princípio organizador: aqui o risco é derivado, não cadastrado. Ele emerge da correlação entre exposição, ameaça, controle e criticidade do processo.']},
+        {num:'04',lab:'Decisões',h:'Quando a regra vira interface',ps:[
+          'O score ordena os riscos (probabilidade × impacto × modificador de controle), mas um risco em estado ativo sobe para o topo independente disso — "urgente agora" não é "grave no papel".',
+          'Quando uma norma nova aumenta o denominador da conformidade, a interface expõe o delta em vez de esconder a queda. E um match fraco de deduplicação nunca mescla em silêncio: marca como possível duplicata e devolve a decisão ao usuário.']},
+        {num:'05',lab:'Trade-offs',h:'Densidade como preço da honestidade',ps:[
+          'Mostrar a mecânica — por que um score mudou, o que é herdado, o que é duplicata — custa espaço de tela e um momento de complexidade.',
+          'Escolhi isso em vez de uma superfície mais limpa, porque em segurança lógica escondida custa confiança. Densidade foi o preço da honestidade, e o design system pagou essa conta.']},
+        {num:'06',lab:'Execução',h:'Um sistema que sustenta a plataforma',ps:[
+          'Construí e mantenho o design system que sustenta a plataforma inteira — cerca de 50 famílias de componentes, seis escalas primitivas de cor sob a metodologia 60-30-10, uma escala Step de espaçamento e componentes pesados de domínio: tabelas analíticas, o drawer de risco, gráficos e as caixas de mensagem da IA.',
+          'Cada tela e estado foi validado HTML-first e depois espelhado no Figma de forma incremental.']},
+        {num:'07',lab:'Resultado',h:'Coerente do token ao módulo',metrics:[{big:'5',l:'módulos de produto'},{big:'~50',l:'famílias de componentes'},{big:'Multi-tenant',l:'isolamento por tenant_id'}],ps:[
+          'O Safer V3 é coerente do token ao módulo: um sistema sustentando cinco domínios técnicos densos, cada um com regra de negócio pesada traduzida em interface que dois perfis muito diferentes realmente usam.',
+          'A medida que importa aqui não é número de lançamento — é que adicionar um módulo deixou de significar renegociar a interface inteira. O sistema absorve regras novas em vez de ceder a elas.']},
+        {num:'08',lab:'Aprendizados',h:'Clareza é uma feature de risco',ps:[
+          'Em segurança OT, clareza é uma feature de risco. As melhores decisões foram quase sempre mostrar mais contexto, não menos — deixando o design system carregar a densidade sem pesar a tela.',
+          'Um sistema assim não é biblioteca de botão; é o que permite dizer sim a mais um estado, módulo ou regra.']},
+        {num:'09',lab:'O que eu faria diferente',h:'Conquistar a leitura de 30 segundos',ps:[
+          'Validaria a visão executiva com quem realmente decide mais cedo — a leitura de 30 segundos é fácil de presumir e difícil de conquistar.',
+          'E formalizaria antes, como padrão do próprio sistema, a forma de expor rationale e confiança da IA.']}
+      ]
+    },
+    sync:{
+      eyebrow:'Discovery · Service Design · Dados · Ferramentas Internas',
+      title:'Upstream sync & match',
+      summary:'Uma plataforma interna de controle de descontos PBM na RD — para que um operador decidisse qual desconto chega a cada canal e cada bandeira, num fluxo onde uma planilha semanal e uma carga noturna nunca batiam.',
+      role:'Product Designer', scope:'Discovery → Service Design → Co-criação → Handoff',
+      timeline:'Roadmap quadrimestral', year:'2022', hero:'shot r161 sync-hero', gallery:['shot r074 sync-g1','shot r098 sync-g2'],
+      next:{key:'pbm', title:'Cadastro dinâmico de PBM'},
+      sections:[
+        {num:'01',lab:'Desafio',h:'Duas fontes de verdade que nunca batiam',ps:[
+          'Os descontos de PBM chegavam aos canais de venda da RD por dois caminhos paralelos que nunca estavam sincronizados. Quatro autorizadoras — E-pharma, Seven, Funcional e Zicard — enviavam uma carga de dados toda madrugada, cada uma em seu horário. Em paralelo, os laboratórios mandavam atualizações de regras de desconto separadamente, em formatos diferentes, que o time comercial compilava numa planilha atualizada só uma vez por semana.',
+          'Para uma autorização passar, o produto precisava existir na carga e na planilha. Quando não existia, o cliente batia num erro no balcão — prejudicando penetração de PBM, receita e tempo de atendimento.']},
+        {num:'02',lab:'Restrições',h:'Uma regra de negócio, não só um problema de sync',ps:[
+          'Não dava para resolver automatizando a junção. Qual desconto vale em qual canal (balcão, site, app) e sob qual bandeira (Raia ou Drogasil) depende de acordos comerciais entre a RD e cada indústria — decisões humanas que precisavam continuar humanas.',
+          'Então o alvo nunca foi automação total: era dar a um operador interno um lugar para ver tudo que as autorizadoras enviaram e decidir o que de fato vai ao ar, e onde.']},
+        {num:'03',lab:'Discovery',h:'Mapear o fluxo e depois medi-lo',ps:[
+          'Mapeei o serviço atual ponta a ponta como blueprint — ações do atendente, interface do balcão, bancos de dados, autorizadoras e time comercial — com uma raia dedicada a dores e outra a métricas, para que cada problema ficasse ao lado da etapa que o causava.',
+          'Depois dimensionei. A divergência entre planilha e carga era de 42% dos SKUs em média. Só o erro "produto não cuponável" respondia por 4.344 de 33.176 erros — 13% de todas as falhas ligadas a divergência. Por autorizadora, a divergência ia de 33% (Funcional) a 54% (E-pharma). O problema deixou de ser anedota e virou número que a tribo podia priorizar.']},
+        {num:'04',lab:'Decisões',h:'Uma superfície de controle antes dos canais',ps:[
+          'A decisão foi inserir uma interface de controle dentro do sistema de gestão de cadastro: tudo que as autorizadoras enviam chega ali primeiro, o time comercial trata, e só então segue para os canais de venda.',
+          'Conduzi um workshop de co-criação multidisciplinar para dar forma a isso — enquadrando o problema em perguntas How Might We, mapeando o que cada etapa da funcionalidade precisava, e depois Crazy 8 com votação. Colocar os usuários reais na sala fez a estrutura sair da operação, e não de mim.']},
+        {num:'05',lab:'Trade-offs',h:'Manter o humano no circuito',ps:[
+          'Automatizar todo o match seria mais rápido de construir e mais fácil de vender. Mas acordo comercial não é determinístico, e publicar um desconto errado em silêncio é pior do que não publicar — então mantive um ponto de decisão humano e desenhei para velocidade de revisão em vez de remover o revisor.',
+          'O escopo também ficou no upstream em vez de redesenhar a interface do balcão: corrigir a origem da divergência limpava todos os canais de uma vez.']},
+        {num:'06',lab:'Execução',h:'Do blueprint às especificações',ps:[
+          'Entreguei os blueprints do serviço atual e do ideal, a análise quantitativa por autorizadora e tipo de erro, as saídas da co-criação e uma apresentação de handoff cobrindo especificações de interface, comportamento das tags na busca, comportamento do scroll e os modais de programas de laboratório e de regras complexas.',
+          'A iniciativa foi sequenciada no roadmap do quadrimestre da tribo junto às outras frentes de PBM, com nível de confiança sinalizado por item.']},
+        {num:'07',lab:'Resultado',h:'Um problema que a tribo pôde atacar',metrics:[{big:'42%',l:'divergência de SKUs encontrada'},{big:'13%',l:'dos erros por uma só causa'},{big:'4 → 1',l:'autorizadoras, uma superfície'}],ps:[
+          'O trabalho transformou uma reclamação crônica e vaga em um problema medido, mapeado, com solução acordada e lugar no roadmap. Minha contribuição aqui foi menos sobre telas e mais sobre dar à organização uma visão compartilhada e baseada em evidência de um fluxo que ninguém era dono ponta a ponta.']},
+        {num:'08',lab:'Aprendizados',h:'Número move roadmap',ps:[
+          'Um blueprint mostra onde o processo quebra; um número decide se alguém financia o conserto. Juntar os dois — a raia de dor ao lado da raia de métrica — foi o que fez isso ser priorizado.',
+          'E co-criação não é ritual de workshop: trazer o time comercial para dentro do design fez a interface de controle refletir como eles realmente negociam, e não como eu imaginava.']},
+        {num:'09',lab:'O que eu faria diferente',h:'Assumir a métrica desde o dia um',ps:[
+          'Definiria a métrica de sucesso e sua instrumentação durante o discovery, não depois — a taxa de divergência era mensurável, então deveria ter sido o KPI acompanhado desde o começo.',
+          'E levaria a interface mais longe. A pesquisa e o handoff se sustentam; as telas finais foram a parte mais fraca da entrega, e eu protegeria mais tempo para esse craft.']}
+      ]
+    },
+    pbm:{
+      eyebrow:'Discovery · Pensamento Sistêmico · Compliance',
+      title:'Cadastro dinâmico de PBM',
+      summary:'Um único formulário de balcão que adapta os campos por autorizadora via API — destravando descontos e mantendo a coleta de dados em conformidade.',
+      role:'Product Designer', scope:'Discovery → Design → Handoff',
+      timeline:'4 semanas · Jul–Ago', year:'2025', hero:'shot pbm-hero', gallery:['shot r85 pbm-g1','shot r169 pbm-g2'],
+      next:{key:'jump', title:'TI Safe Jump'},
+      sections:[
+        {num:'01',lab:'Desafio',h:'Um formulário fixo, quatro autorizadoras',ps:[
+          'Para obter um desconto de PBM na farmácia, o cliente precisa se cadastrar na autorizadora que oferece aquele benefício — e havia quatro autorizadoras, cada uma exigindo dados diferentes.',
+          'Mas o Terminal de Relacionamento do balcão sempre mostrava o mesmo formulário fixo, independente do medicamento ou da autorizadora. Os atendentes preenchiam o que dava, chutavam o resto e só descobriam que estava errado quando o desconto falhava — com um cliente esperando no caixa.']},
+        {num:'02',lab:'Restrições',h:'Nenhum estado de erro pode bloquear um desconto válido',ps:[
+          'Algumas autorizadoras não recebiam dados obrigatórios, o que bloqueava o desconto; outras recebiam dados que nunca pediram, um risco de LGPD.',
+          'A correção precisava funcionar na loja, no balcão, sem nenhum estado de erro capaz de bloquear um desconto válido — respondendo a um OKR: +12% de penetração de CRM.']},
+        {num:'03',lab:'Discovery',h:'O que os testes de usabilidade expuseram',ps:[
+          'Mapeei todos os campos exigidos por cada autorizadora em cada caminho de cadastro e conduzi sessões de usabilidade com os atendentes que trabalham no balcão. Os achados foram específicos e baratos de corrigir: em um protótipo onde o botão de conclusão ficava visível o tempo todo, três de quatro participantes não perceberam que o formulário tinha scroll. Seis de oito nunca clicaram no ícone de ajuda que explicava o campo "Cartão PBM" — um campo que a maioria sequer reconhecia.',
+          'Os atendentes também apontaram campos que brigam com a realidade: um telefone residencial obrigatório que poucos clientes ainda têm, e um CRM que eles muitas vezes não conseguem quando o cliente está sem receita. E pediam, de forma consistente, os dados de receita acima dos dados pessoais, porque é a parte que exige mais atenção na leitura. A interface não estava só pedindo as coisas erradas — estava pedindo na ordem errada.']},
+        {num:'04',lab:'Decisões',h:'Deixar a API conduzir o formulário',ps:[
+          'Um formulário só, conduzido por uma API que retorna quais campos o desconto daquele medicamento específico realmente exige. Os campos necessários ficam habilitados; todo o resto aparece desabilitado na interface, para que não possa ser preenchido sem necessidade.',
+          'A regra passa a viver no sistema, e não na memória do atendente.']},
+        {num:'05',lab:'Trade-offs',h:'Acoplamento em troca de correção',ps:[
+          'Um formulário dinâmico conduzido por API dá mais trabalho para construir e testar do que um estático, e acopla a interface aos contratos de backend.',
+          'Aceitei esse acoplamento porque era a única forma de estar correto em quatro back-ends diferentes sem manter quatro formulários.']},
+        {num:'06',lab:'Execução',h:'Especificado até o espaçamento',ps:[
+          'O formulário abre como um modal sobre o terminal, nomeando a autorizadora e o medicamento para o atendente saber em qual programa está cadastrando. Dados de receita vêm primeiro, depois dados pessoais, depois dados do paciente quando ele não é o titular, e por fim as autorizações da indústria — a ordem que os atendentes pediram. Os campos que a autorizadora não solicitou aparecem desabilitados e rotulados como "não solicitado", para que a ausência deles seja lida como intencional, e não como defeito.',
+          'Entreguei com especificações redlined — passos de espaçamento, larguras de campo e estados documentados em todas as variantes do modal — junto da lógica de campos conduzida por API e do comportamento de cada caminho.']},
+        {num:'07',lab:'Resultado',h:'Menos erro, mais desconto',metrics:[{big:'+12%',l:'penetração de CRM (OKR)'},{big:'4 → 1',l:'autorizadoras, um formulário'},{big:'0',l:'estados de erro bloqueantes'}],ps:[
+          'O formulário adaptativo foi construído para aumentar a vazão, elevar a penetração de PBM cortando erros na liberação de desconto, melhorar conversão e reduzir dados armazenados indevidamente por conformidade.',
+          'E, igualmente importante, tirou a regra da cabeça do atendente. Saber qual autorizadora quer qual campo deixou de ser conhecimento tácito de quem tem mais tempo de casa e passou a ser algo que o sistema afirma em cada cadastro.']},
+        {num:'08',lab:'Aprendizados',h:'Restrição como feature',ps:[
+          'Restrição pode ser uma feature de interface — desabilitar o que não é necessário fez tanto pela correção e pela conformidade quanto qualquer campo novo.',
+          'Deixar uma API conduzir o formulário manteve uma única superfície adaptável a back-ends muito diferentes — e transformou um campo desabilitado em explicação, e não em beco sem saída.']},
+        {num:'09',lab:'O que eu faria diferente',h:'Auditar as regras ao longo do tempo',ps:[
+          'Adicionaria telemetria leve sobre o que cada autorizadora realmente exige ao longo do tempo, para que a lógica do formulário pudesse ser auditada e simplificada em vez de confiada cegamente. Regras que vivem numa API mudam em silêncio.',
+          'E faria um novo teste depois do lançamento. As sessões de usabilidade guiaram bem o design, mas nunca fechamos o ciclo para confirmar que as correções funcionaram com quem usa todo dia.']}
+      ]
+    }
+  };
+
   function renderCase(c){
     const secs=c.sections.map(s=>{
       const metrics=s.metrics?`<div class="metrics">${s.metrics.map(m=>`<div><div class="big">${m.big}</div><div class="l">${m.l}</div></div>`).join('')}</div>`:'';
       const ps=s.ps.map(p=>`<p>${p}</p>`).join('');
       const block=`<div class="cs"><div class="left"><div class="num">${s.num}</div><div class="lab">${s.lab}</div></div><div class="right"><h3>${s.h}</h3>${metrics}${ps}</div></div>`;
-      const gal=(s.lab==='Execution')?`<div class="gallery${c.gallery[0].includes('shot')?' narrow':''}"><div class="img ${c.gallery[0]}"></div><div class="img ${c.gallery[1]}"></div></div>`:'';
+      const gal=(s.lab==='Execution'||s.lab==='Execu\u00e7\u00e3o')?`<div class="gallery${c.gallery[0].includes('shot')?' narrow':''}"><div class="img ${c.gallery[0]}"></div><div class="img ${c.gallery[1]}"></div></div>`:'';
       return block+gal;
     }).join('');
     return `<div class="case-head">
@@ -614,25 +908,28 @@
         <h1>${c.title}</h1>
         <p class="summary">${c.summary}</p>
         <div class="case-meta">
-          <div><div class="k">Role</div><div class="v">${c.role}</div></div>
-          <div><div class="k">Scope</div><div class="v">${c.scope}</div></div>
-          <div><div class="k">Timeline</div><div class="v">${c.timeline}</div></div>
-          <div><div class="k">Year</div><div class="v">${c.year}</div></div>
+          <div><div class="k">${T[LANG].roleK}</div><div class="v">${c.role}</div></div>
+          <div><div class="k">${T[LANG].scopeK}</div><div class="v">${c.scope}</div></div>
+          <div><div class="k">${T[LANG].timeK}</div><div class="v">${c.timeline}</div></div>
+          <div><div class="k">${T[LANG].yearK}</div><div class="v">${c.year}</div></div>
         </div>
       </div>
       <div class="case-hero"><div class="img ${c.hero}"></div></div>
       ${secs}
       <div class="next" onclick="openCase('${c.next.key}')">
-        <span class="label">Next project</span>
+        <span class="label">${T[LANG].nextLabel}</span>
         <span class="nt">${c.next.title} <span>\u2192</span></span>
       </div>
-      <footer><span>\u00a9 2026 Pedro Jardim</span><span>Design &amp; Product · Rio de Janeiro</span></footer>`;
+      <footer><span>\u00a9 2026 Pedro Jardim</span><span data-i18n="footRole">Design &amp; Product · Rio de Janeiro</span></footer>`;
   }
 
-  function openCase(key){
-    const c=CASES[key]||CASES.jump;
-    document.getElementById('caseBody').innerHTML=renderCase(c);
-    go('case');
+  function openCase(key,keepScroll){
+    const src = (LANG==='pt' && typeof CASES_PT!=='undefined') ? CASES_PT : CASES;
+    const c = src[key] || src.jump;
+    const cb = document.getElementById('caseBody');
+    cb.dataset.key = key || 'jump';
+    cb.innerHTML = renderCase(c);
+    if(!keepScroll) go('case');
   }
 </script>
 </body>
